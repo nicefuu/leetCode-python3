@@ -16,7 +16,6 @@
 class Solution:
     def lengthOfLIS(self, nums):
         """
-
         :param nums: list[int]
         :return: int
         """
@@ -37,5 +36,5 @@ class Solution:
 
 
 s = Solution()
-print(s.lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18,105]))
-print(s.lengthOfLIS([10,9,2,5,3,4]))
+print(s.lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18, 105]))
+print(s.lengthOfLIS([10, 9, 2, 5, 3, 4]))
