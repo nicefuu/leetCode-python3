@@ -46,21 +46,37 @@ class Solution:
         :param nums: list[int]
         :return: int
         """
-        if len(nums)<=0:
+        if len(nums) <= 0:
             return len(nums)
-        i,j=0,1
-        while j<len(nums):
-            if nums[i]==nums[j]:
-                j+=1
+        i, j = 0, 1
+        while j < len(nums):
+            if nums[i] == nums[j]:
+                j += 1
             else:
-                i+=1
-                nums[i]=nums[j]
-                j+=1
-        return i+1
+                i += 1
+                nums[i] = nums[j]
+                j += 1
+        return i + 1
 
 
+class Solution2:
+    def removeDuplicates(self, nums) -> int:
+        """
+        :param nums: list[int]
+        :return: int
+        """
+        if len(nums) <= 0:
+            return len(nums)
+        i, j = 0, 1
+        while j < len(nums):
+            if nums[i] == nums[j]:
+                j += 1
+            else:
+                i += 1
+                nums[i] = nums[j]
+                j += 1
+        return i + 1
 
 
-s = Solution()
+s = Solution2()
 print(s.removeDuplicates(nums=[0, 0, 1, 1, 1, 2, 2, 3, 3, 4]))
-

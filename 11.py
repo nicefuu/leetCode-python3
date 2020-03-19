@@ -8,12 +8,40 @@
 输入：[1,8,6,2,5,4,8,3,7]
 输出：49
  """
-class Solution:
+
+
+class Solution:  # 超时
     def maxArea(self, height) -> int:
         """
 
         :param height: list[int]
         :return: int
         """
+        m = 0
+        for i in range(len(height) - 1):
+            for j in range(i + 1, len(height)):
+                if min(height[i], height[j]) * (j - i) > m:
+                    m = min(height[i], height[j]) * (j - i)
+        return m
 
 
+class Solution2:
+    def maxArea(self, height) -> int:
+        """
+        :param height: list[int]
+        :return: int
+        """
+        left = 0
+        right = len(height) - 1
+        res = 0
+        while left < right:
+            res = max(res, min(height[right], height[left]) * (right - left))
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return res
+
+
+s = Solution2()
+print(s.maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7]))
