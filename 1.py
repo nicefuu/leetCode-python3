@@ -30,9 +30,12 @@ class Solution:
 class Solution2:
     def twoSum(self, nums, target):
         """
-        :type nums: List[int]
-        :type target: int
-        :return: List[int]
+        :param nums: list[int]
+        :param target: int
+        :return: list[int]
         """
-s=Solution()
-print(s.twoSum(nums = [2, 7, 11, 15], target = 9))
+
+
+
+s = Solution2()
+print(s.twoSum(nums=[2, 7, 11, 15], target=9))

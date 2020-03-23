@@ -15,10 +15,42 @@
 
 
 class Solution:
-    def findDisappearedNumbers(self, nums) :
+    def findDisappearedNumbers(self, nums):
         """
         :param nums:list[int]
         :return:list[int]
         """
-        for i in range(len(nums)):
-            pass
+        res = []
+        n = len(nums)
+        for i in range(n):
+            if nums[i] > 0:
+                if nums[nums[i] - 1] > 0:
+                    nums[nums[i] - 1] = -nums[nums[i] - 1]
+            elif nums[i] < 0:
+                if nums[-nums[i] - 1] > 0:
+                    nums[-nums[i] - 1] = -nums[-nums[i] - 1]
+        for i in range(n):
+            if nums[i] > 0:
+                res.append(i + 1)
+        return res
+
+
+class Solution2:
+    def findDisappearedNumbers(self, nums):
+        """
+        :param nums:list[int]
+        :return:list[int]
+        """
+        res = []
+        n = len(nums)
+        for i in range(n):
+            if nums[abs(nums[i]) - 1] > 0:
+                nums[abs(nums[i]) - 1] *= -1
+        for i in range(n):
+            if nums[i] > 0:
+                res.append(i + 1)
+        return res
+
+
+s = Solution2()
+print(s.findDisappearedNumbers([1]))

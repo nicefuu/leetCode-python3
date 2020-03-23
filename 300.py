@@ -19,22 +19,25 @@ class Solution:
         :param nums: list[int]
         :return: int
         """
-        lenn = len(nums)
-        if lenn <= 1:
-            return lenn
-        m = 1
-        for i in range(lenn - 1):
-            templen = 1
-            head = nums[i]
-            for j in range(i + 1, lenn):
-                if nums[j] > head:
-                    templen += 1
-                    head = nums[j]
-            if templen > m:
-                m = templen
-        return m
+        n = len(nums)
+        if n == 0 or n == 1:  # 数组长度为0或1直接返回长度
+            return len(nums)
+        else:  # 数组长度大于1
+            temp = [1]
+            m = 1
+            for i in range(1, n):
+                temp.append(1)
+                j = i - 1
+                while j >= 0:
+                    if nums[j] < nums[i] and temp[j] + 1 > temp[i]:
+                        temp[i] = temp[j] + 1
+                    j -= 1
+                if m < temp[i]:
+                    m = temp[i]
+            return m
 
 
 s = Solution()
 print(s.lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18, 105]))
 print(s.lengthOfLIS([10, 9, 2, 5, 3, 4]))
+print(s.lengthOfLIS([10, 9, 2, 5, 3, 7, 101, 18]))
