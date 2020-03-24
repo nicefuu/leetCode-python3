@@ -34,8 +34,14 @@ class Solution2:
         :param target: int
         :return: list[int]
         """
-
+        hashmap = {}
+        for i in range(len(nums)):
+            if target - nums[i] in hashmap:
+                return [hashmap[target - nums[i]], i]
+            else:
+                hashmap[nums[i]] = i
+        return []
 
 
 s = Solution2()
-print(s.twoSum(nums=[2, 7, 11, 15], target=9))
+print(s.twoSum(nums=[2, 8, 11, 15], target=17))

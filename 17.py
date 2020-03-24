@@ -18,7 +18,7 @@ class Solution:
         :param digits:str
         :return: list[str]
         """
-        if len(digits)==0:
+        if len(digits) == 0:
             return []
         keymap = ['', '', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz']
         res = []
@@ -42,4 +42,4 @@ class Solution:
 
 
 s = Solution()
-print(s.letterCombinations('234'))
+print(s.letterCombinations('25896345687'))
