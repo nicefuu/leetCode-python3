@@ -43,6 +43,7 @@ s = "mississippi"
 p = "mis*is*p*."
 输出: false
 """
+import re
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
         """
@@ -50,3 +51,4 @@ class Solution:
         :param p: str
         :return: bool
         """
+        return True if re.match(p + '$', s) else False
