@@ -23,41 +23,17 @@ class Solution:
         :return: list[int]
         """
         res = []
-
-        def backtrack(nums, tmp):
+        temp=[]
+        def back(temp, nums):
             if not nums:
-                res.append(tmp)
+                res.append(temp)
                 return
-            for i in range(len(nums)):
-                backtrack(nums[:i] + nums[i + 1:], tmp + [nums[i]])
-
-        backtrack(nums, [])
+            else:
+                for i in range(len(nums)):
+                    back(temp +[nums[i]], nums[:i] + nums[i + 1:])
+        back([], nums)
         return res
 
 
-class Solution2:
-    def permute(self, nums):
-        """
-        :param nums: list[int]
-        :return: list[int]
-        """
-        ret = []
-
-        def dfs(nums, tmp):
-            """
-            :param nums:
-            :param tmp:
-            :return:
-            """
-            if not nums:
-                ret.append(tmp)
-                return
-            for i in range(len(nums)):
-                dfs(nums[:i] + nums[i + 1:], tmp.append(nums[i]))
-
-        dfs(nums, [])
-        return ret
-
-
-s = Solution2()
+s = Solution()
 print(s.permute([1, 2, 3, 4]))
