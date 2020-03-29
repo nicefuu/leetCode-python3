@@ -1,5 +1,6 @@
 """
-给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。
+给定一个包含 n 个整数的数组 nums 和一个目标值 target，判断 nums 中是否存在四个元素 a，b，c 和 d ，
+使得 a + b + c + d 的值与 target 相等？找出所有满足条件且不重复的四元组。
 
 注意：
 
@@ -24,8 +25,10 @@ class Solution:
         """
         if not nums or len(nums)<4:
             return []
-        left1=0
-        left2=1
-        right1=len(nums)-1
-        right2=len(nums)-2
-        
+        a=0
+        b=1
+        c=len(nums)-2
+        d=len(nums)-1
+        while b<c:
+            if nums[a]+nums[b]+nums[c]+nums[c]==target:
+                return
