@@ -25,12 +25,11 @@ class Solution:
         day_out = len(prices) - 1
         profit = 0
         while day_in < day_out:
-            profit = max(prices[day_out] - prices[day_in], profit)
-            while prices[day_in + 1] < prices[day_in]:
+            profit = prices[day_out] - prices[day_in] if prices[day_out] - prices[day_in] > profit else profit
+            while prices[day_in + 1] <= prices[day_in]:
                 day_in += 1
-            while prices[day_out - 1] > prices[day_out]:
+            while prices[day_out - 1] >= prices[day_out]:
                 day_out -= 1
-
 
         return profit
 
