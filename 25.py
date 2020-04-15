@@ -15,22 +15,33 @@ k 是一个正整数，它的值小于或等于链表的长度。
 你的算法只能使用常数的额外空间。
 你不能只是单纯的改变节点内部的值，而是需要实际进行节点交换。
 """
+
+
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, x):
         self.val = x
         self.next = None
 
+
 class Solution:
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        if not head or head.next==None:
+        if not head or head.next == None:
             return head
-        def reverseKnodes(node):
-            while node.next!=None:
-                tmp=node.next
-                node.next=tmp.next
-                tmp.next=node
-        cnt=0
-        node=head
-        while node.next!=None:
-            start=None
+
+        def reverseKnodes(ahead, end):
+            start = ahead.next
+            while start.next != None:
+                tmp = start.next
+                start.next = tmp.next
+                tmp.next = start
+
+        ahead = ListNode(None)
+        ahead.next = head
+        cnt = 0
+        while ahead.next != None:
+            end = ahead.next
+            ahead = ahead.next
+            cnt += 1
+            if cnt % k == 0:
+                reverseKnodes(ahead, end)
