@@ -37,7 +37,7 @@ class Solution:  # 超时
         return dp(prices, len(prices) - 1)[0]
 
 
-class Solution2:  # 超时
+class Solution2:
     def maxProfit(self, prices) -> int:
         """
         :param prices:list[int]
