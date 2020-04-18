@@ -23,7 +23,6 @@ class Solution:
         :return: list[int]
         """
         res = []
-        temp=[]
         def back(temp, nums):
             if not nums:
                 res.append(temp)

@@ -36,6 +36,28 @@ class Solution:
             elif 65 <= ord(st[i]) <= 90:
                 st[i] = chr(ord(st[i]) + 32)
         return ret
-s=Solution()
-str="3Z4aG"
+
+
+class Solution2:
+    def letterCasePermutation(self, S):
+        """
+        :param S: str
+        :return: list[str]
+        """
+        res=[]
+        def backtrack(subs,i):
+            if len(subs)==len(S):
+                res.append(subs)
+            else:
+                if S[i].isalpha():
+                    backtrack(subs+S[i].lower(),i+1)
+                    backtrack(subs+S[i].upper(),i+1)
+                else:
+                    backtrack(subs+S[i],i+1)
+        backtrack('',0)
+        return res
+
+
+s = Solution2()
+str = "3Z4aG"
 print(s.letterCasePermutation(str))
