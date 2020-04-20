@@ -23,16 +23,18 @@ class Solution:
         :return: list[int]
         """
         res = []
+
         def back(temp, nums):
             if not nums:
                 res.append(temp)
                 return
             else:
                 for i in range(len(nums)):
-                    back(temp +[nums[i]], nums[:i] + nums[i + 1:])
+                    back(temp + [nums[i]], nums[:i] + nums[i + 1:])
+
         back([], nums)
         return res
 
 
 s = Solution()
-print(s.permute([1, 2, 3, 4]))
+print(s.permute([1, 2, 3, 4, 5]))
