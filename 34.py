@@ -19,12 +19,36 @@ from typing import List
 
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        res = [-1, -1]
-
-        def binary_search(arr, left, right):
-            mid = int(left + right) / 2
-            if mid==left:
-                return
+        if len(nums)==0:
+            return [-1,-1]
+        def binary_search(arr, start, end, target):
+            if start==end:
+                if arr[start]==target:
+                    return [start,start]
+                else:
+                    return [-1,-1]
+            mid = (start + end) // 2
+            if arr[mid] == target:
+                left, right = mid, mid
+                while left > 0:
+                    if arr[left - 1] == target:
+                        left -= 1
+                    else:
+                        break
+                while right < len(arr) - 1:
+                    if arr[right + 1] == target:
+                        right += 1
+                    else:
+                        break
+                return [left, right]
+            elif arr[mid] > target:
+                return binary_search(arr, start, mid, target)
             else:
-                binary_search(arr,left,mid)
-                binary_search(arr,mid+1,right)
+                return binary_search(arr, mid + 1, end, target)
+
+        res = binary_search(nums, 0, len(nums) - 1, target)
+        return res
+
+
+s = Solution()
+print(s.searchRange([5, 7, 7, 8, 8, 8, 8, 8, 8, 10], 6))

@@ -17,13 +17,40 @@
 输出: True
 解释: 可由子字符串 "abc" 重复四次构成。 (或者子字符串 "abcabc" 重复两次构成。)
 """
+
+
 class Solution:
     def repeatedSubstringPattern(self, s: str) -> bool:
         """
         :param s:str
         :return: bool
         """
+        if not s:
+            return False
+        if len(s) == 1:
+            return True
+        for i in range(len(s) - 1, 0, -1):
+            if len(s) % i == 0:
+                sublen = len(s) // i
+                tmp = []
+                for k in range(sublen):
+                    tmp.append(s[k * i:(k + 1) * i])
+                if len(set(tmp)) == 1:
+                    return True
+        return False
 
 
+class Solution2:
+    def repeatedSubstringPattern(self, s: str) -> bool:
+        """
+        :param s:str
+        :return: bool
+        """
+        """假设母串S是由子串s重复N次而成，
+         则S+S则有子串s重复2N次,现在S=Ns，
+          S+S=2Ns 因此S在(S+S)[1:-1]中必出现一次以上"""
+        return s in (s + s)[1:-1]
 
 
+s = Solution()
+print(s.repeatedSubstringPattern("abcabcabc"))
