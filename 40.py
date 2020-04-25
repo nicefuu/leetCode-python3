@@ -31,6 +31,35 @@ from typing import List
 
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        res=[]
-        candidates.sort()
 
+        def sumarr(arr, nums):
+            sum = 0
+            for i in arr:
+                sum += nums[i]
+            return sum
+
+        res = []
+
+        def func(tmp, nums, target):
+            for i in range(len(nums)):
+                if not tmp or i > tmp[-1]:
+                    if sumarr(tmp + [i], nums) == target:
+                        res.append(tmp + [i])
+                    elif sumarr(tmp + [i], nums) > target:
+                        break
+                    else:
+                        func(tmp + [i], nums, target)
+
+        candidates.sort()
+        func([], candidates, target)
+        for i in range(len(res)):
+            for j in range(len(res[i])):
+                res[i][j] = candidates[res[i][j]]
+        res = list(set(tuple(t) for t in res))
+        res = [list(t) for t in res]
+
+        return res
+
+
+s = Solution()
+print(s.combinationSum2(candidates=[], target=8))
