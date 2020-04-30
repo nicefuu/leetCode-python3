@@ -31,7 +31,7 @@ from typing import List
 
 class Solution:
     def findLUSlength(self, strs: List[str]) -> int:
-        strs[:] = sorted(strs, key=lambda x:len(x))
+        strs[:] = sorted(strs, key=lambda x:len(x))[::-1]
         print(strs)
 
 
