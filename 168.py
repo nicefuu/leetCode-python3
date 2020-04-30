@@ -27,15 +27,23 @@
 输入: 701
 输出: "ZY"
 """
+
+
 class Solution:
     def convertToTitle(self, n: int) -> str:
-        s = ''
+        res = ''
         while n:
             n -= 1
-            s = chr(n % 26 + 65) + s
-            n = n // 26
-        return s
+            res = chr(n % 26 + 65) + res
+            n //= 26
+        return res
 
 
 s = Solution()
-print(s.convertToTitle(702), end=" ")
+import time
+a=time.time()
+for i in range(1000):
+    print("{}={}".format(i,s.convertToTitle(i)))
+b=time.time()
+print(b-a)
+
