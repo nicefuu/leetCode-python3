@@ -31,9 +31,41 @@ from typing import List
 
 class Solution:
     def findLUSlength(self, strs: List[str]) -> int:
-        strs[:] = sorted(strs, key=lambda x:len(x))[::-1]
-        print(strs)
+        if len(strs) == 0:
+            return 0
+        if len(strs) == 1:
+            return len(strs[0])
+
+        strs[:] = sorted(strs, key=lambda x: len(x))[::-1]
+
+        def isSubstr(s, str):  # 判断s是否是str的子串（不改变相对顺序）
+            if not s:
+                return True
+            if not str:
+                return False
+            i, j = 0, 0
+            while j < len(str):
+                # print(i,j)
+                if s[i] == str[j]:
+                    if i == len(s) - 1:
+                        return True
+                    i += 1
+                j += 1
+                if i >= len(s):
+                    return False
+            return False
+
+        for i in range(len(strs)):
+            flag=True
+            for j in range(len(strs)):
+                if i!=j and len(strs[i])<=len(strs[j]):
+                    if isSubstr(strs[i],strs[j]):
+                        flag=False
+                        break
+            if flag:
+                return len(strs[i])
+        return -1
 
 
 s = Solution()
-s.findLUSlength(['qweqwe', 'wwqweqww', 'hjkhd'])
+print(s.findLUSlength(["aabbcc", "aabbcc","c","e"]))
